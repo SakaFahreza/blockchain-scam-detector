@@ -1,4 +1,4 @@
-# 🛡️ Blockchain Transaction Scam Detector
+# Blockchain Transaction Scam Detector
 
 Sistem deteksi risiko penipuan (*scam/fraud*) pada transaksi Web3 dan cryptocurrency secara *real-time* berbasis **Machine Learning** (Random Forest Classifier) dan kerangka kerja **CRISP-DM**.
 
@@ -9,14 +9,14 @@ Sistem deteksi risiko penipuan (*scam/fraud*) pada transaksi Web3 dan cryptocurr
 
 ---
 
-## 📌 Fitur Utama
+## Fitur Utama
 * **Real-time Inference:** Memprediksi status transaksi (**Aman** atau **Berisiko Scam**) dalam hitungan milidetik.
 * **High Accuracy:** Dilatih menggunakan 20.000 data transaksi blockchain dengan akurasi model **92.53%** (Random Forest Classifier).
 * **Decoupled Architecture:** Backend REST API berbasis **FastAPI** dan antarmuka web interaktif berbasis **Vue.js 3 (CDN)**.
 
 ---
 
-## 🏗️ Struktur Repositori
+## Struktur Repositori
 
 ```text
 blockchain-scam-detector/
@@ -30,7 +30,7 @@ blockchain-scam-detector/
 
 ---
 
-## ⚙️ Spesifikasi Fitur Data (Input Features)
+## Spesifikasi Fitur Data (Input Features)
 
 Model menerima 10 parameter numerik transaksi sebagai input:
 1. `sender_wallet_age_days`: Usia dompet pengirim (hari).
@@ -46,7 +46,7 @@ Model menerima 10 parameter numerik transaksi sebagai input:
 
 ---
 
-## 🚀 Cara Menjalankan Aplikasi Lokal
+## Cara Menjalankan Aplikasi Lokal
 
 ### 1. Prasyarat
 Pastikan Python 3.9+ telah terinstall di komputer kamu.
@@ -54,7 +54,7 @@ Pastikan Python 3.9+ telah terinstall di komputer kamu.
 ### 2. Clone Repositori & Install Dependencies
 ```bash
 # Clone repositori ini
-git clone https://github.com/USERNAME_KAMU/blockchain-scam-detector.git
+git clone https://github.com/SakaFahreza/blockchain-scam-detector.git
 
 # Masuk ke direktori proyek
 cd blockchain-scam-detector
@@ -74,7 +74,7 @@ Buka file `index.html` langsung di browser favorit kamu (Chrome/Firefox/Edge), a
 
 ---
 
-## 📊 Performa Model (CRISP-DM Evaluation)
+## Performa Model (CRISP-DM Evaluation)
 
 | Algoritma | Accuracy | Precision (Scam) | Recall (Scam) | Status |
 | :--- | :---: | :---: | :---: | :---: |
