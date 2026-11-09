@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Blockchain Scam Detector</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body style="font-family: sans-serif; background: #f4f7f6; padding: 20px;">
+    <div id="app" style="max-width: 600px; margin: 30px auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+        <h2>Blockchain Transaction Scam Detector</h2>
+        <p>Sistem Deteksi Risiko Penipuan Transaksi</p>
+        
+        <form @submit.prevent="checkTransaction">
+            <div v-for="(val, key) in form" :key="key" style="margin-bottom: 10px;">
+                <label style="font-size: 14px; font-weight: bold;">{{ key }}:</label><br>
+                <input type="number" v-model.number="form[key]" step="any" style="width: 100%; padding: 6px; box-sizing: border-box;" />
+            </div>
+            <button type="submit" style="background-color: #007bff; color: white; padding: 10px; border: none; border-radius: 4px; cursor: pointer; width: 100%; font-weight: bold;">
+                Analisis Risiko Transaksi
+            </button>
+        </form>
+
+        <div v-if="result" style="margin-top: 20px; padding: 15px; background-color: #f8f9fa; border-radius: 5px; text-align: center;">
+            <h3>Hasil Analisis:</h3>
+            <p style="font-size: 18px; font-weight: bold;" :style="{ color: result.prediction === 1 ? 'red' : 'green' }">
+                {{ result.status }}
+            </p>
+        </div>
+    </div>
+
+    <script>
+        const { createApp, ref } = Vue;
+        createApp({
+            setup() {
+                const form = ref({
+                    sender_wallet_age_days: 5, receiver_wallet_age_days: 2,
+                    transaction_amount_usd: 1200.0, gas_fee_usd: 15.5,
+                    num_prev_transactions_sender: 3, num_prev_transactions_receiver: 1,
+                    avg_txn_interval_sender_min: 0.5, failed_txn_ratio_sender: 0.8,
+                    velocity_score: 85.0, anomaly_score: 0.92
+                });
+                const result = ref(null);
+
+                const checkTransaction = async () => {
+                    try {
+                        const res = await axios.post("http://127.0.0.1:8000/predict", form.value);
+                        result.value = res.data;
+                    } catch (e) {
+                        alert("Pastikan FastAPI sudah dinyalakan di terminal (`uvicorn main:app --reload`)!");
+                    }
+                };
+
+                return { form, result, checkTransaction };
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>
